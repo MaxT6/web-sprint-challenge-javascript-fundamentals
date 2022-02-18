@@ -17,7 +17,7 @@ myFunction();
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
-
+// nestedFunction is within the scope of myFunction. internal is within the scope of myFunction but above the scope of nestedFunction. JavaScript allows functions to reach out and access variables above them but not below. Since internal is above nestedFunction, it is able to access the data.
 
 
 
@@ -28,11 +28,62 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
 
+// function summation(num) {
+//   count = 0;
+//       for(let i = 0; i < num; i++) {
+//         if (i < num) { 
+//           return count++
+//         }
+     
+//     }
+// }
+
+
+
+// console.log(summation(4));
+
+// function counter(item) {
+//   let count = 0;
+  
+//   return function countFunc() {
+//     count++;
+//     return item
+//   }
+// }
+
+// const counterInstance = counter('Keiran');
+// console.log(counterInstance);
+// console.log(counterInstance());
+// console.log(counterInstance());
+
+
+const array = [0, 1, 2, 3, 4]
+function highCount (array) {
+  let count = 0
+  for (let i = 0; i < array.length; i++) { 
+    return count = count++;
+ } 
+}
+
+console.log('highCount', highCount(array))
+
+
+function simpleCount (number) {
+  count = 0;
+  function addNumber () {
+    newNumber = ++count
   }
- 
+}
+
+function summation(array) {
+  const sumOfArray = array.reduce(function(acc, item) {
+      return acc + item;
+  }, 0);
+  return sumOfArray
+}
+
+console.log('summation', summation(array));
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -56,10 +107,46 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
+  //first attempt - variable works but function is undefined
+// function animalNames(array){ 
+//     displayNames = [];
+//     displayNames.push(array.map(item => {return item.animal_name}))
+// }
+//   console.log('animalNames', animalNames(zooAnimals))
+// console.log('displayNames', displayNames);
+
+// function animalNames(array){ //both variable and function are returning an undefined object. 
+//   displayNames = [];
+//     return function getAnimalNames () {
+//     displayNames.push(array.map(item => {item.animal_name}))
+//     return displayNames
+//   } 
+ 
+// }
+
+// const animalNamesVar = zooAnimals.map(item => {
+//   const container = {};
+
+//   container.item.animal_name = item.scientific_name
+//   return container
+// })
+
+// function animalNames(array){ 
+//     displayNames = [];
+//     return displayNames.push(array.map(item => {item.animal_name}))
+//   } 
+
+function animalNames(array){ 
+  const comboName = array.map(item => {
+    item.animal_name = item.scientific_name;
+  }); return comboName;
+}
+
+console.log('animalNames', animalNames(zooAnimals)());
+
+// console.log('animalNamesVar', animalNamesVar)
+// console.log('animalNames', animalNames(zooAnimals))
+// console.log('displayNames', displayNames);
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
